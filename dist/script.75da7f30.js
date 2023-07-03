@@ -118,7 +118,58 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"script.js":[function(require,module,exports) {
+var slideIndex = 1;
+var showSlides = function showSlides(n) {
+  // debugger
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {
+    slideIndex = 1;
+  }
+  if (n < 1) {
+    slideIndex = slides.length;
+  }
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace("active", "");
+  }
+  slides[slideIndex - 1].style.display = "block";
+  dots[slideIndex - 1].className += "active";
+};
+showSlides(1);
+var prev = document.querySelector('.prev');
+var next = document.querySelector('.next');
+var dot = document.getElementsByClassName('dot');
+var plusSlides = function plusSlides(n) {
+  // debugger
+  showSlides(slideIndex = slideIndex + n);
+};
+var currentSlide = function currentSlide(n) {
+  // debugger
+  showSlides(slideIndex = n);
+};
+prev.addEventListener('click', function () {
+  return plusSlides(-1);
+});
+next.addEventListener('click', function () {
+  return plusSlides(1);
+});
+dot[0].addEventListener('click', function () {
+  return currentSlide(1);
+});
+dot[1].addEventListener('click', function () {
+  return currentSlide(2);
+});
+dot[2].addEventListener('click', function () {
+  return currentSlide(3);
+});
 
+// let slides = document.getElementsByClassName('mySlides');
+
+// console.log(slides[0].style);
 },{}],"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
